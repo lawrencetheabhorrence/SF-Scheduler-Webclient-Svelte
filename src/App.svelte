@@ -15,6 +15,7 @@
   let current_timeslots_per_round;
   let current_priority;
   let current_categories;
+  let email;
 
   const addGame = () => {
     const replacement = 
@@ -30,11 +31,14 @@
     console.log($games)
   }
 
-  const submitData = () => {
+  const submitData = (e) => {
+    e.preventDefault()
     const data = {
       days: $sf.days,
       n_timeslots_day: $sf.n_timeslots_day,
       timeslot_length: $sf.timeslot_length,
+      start_date: $sf.start_date,
+      email: email,
       games: $games
     }
     console.log(data)
@@ -69,7 +73,12 @@
           <label for="timeslot_length">Length of Timeslot in Sportsfest</label>
           <input type="number" class="form-control" id="timeslot_length" placeholder="1" bind:value={$sf.timeslot_length}/>
         </div>
+        <div class="form-group">
+          <label for="start_date">Start Date</label>
+          <input type="date" class="form-control" id="start_date" bind:value={$sf.start_date}/>
+        </div>
       </div>
+      
 
       <div class="forms col-sm-12 col-md-4 pb-3">
         <p>Game Settings(WIP)</p>
@@ -118,7 +127,7 @@
     <form class="col-8 offset-2 pb-3">
       <div class>
         <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" bind:value={email}>
         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
       </div>
       <button class="btn custom-color" on:click={submitData}>Submit data</button>
