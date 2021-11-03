@@ -7,6 +7,7 @@
 
 <script>
   import {sf, games} from "./store.js";
+  import {sendData} from './services/scheduler.js';
   let games_var;
   let game_names;
   games.subscribe(g => {games_var = g; game_names = games_var.map(a => a.name);})
@@ -29,6 +30,13 @@
       $games = $games.map(g => g.name == current_game ? replacement : g)
     }
     console.log($games)
+    console.log(current_priority)
+  }
+
+  const clearGameData = () => {
+    current_game_name = ""
+    current_timeslots_per_round = 1
+    current_categories = 1
   }
 
   const submitData = (e) => {
@@ -42,6 +50,7 @@
       games: $games
     }
     console.log(data)
+    sendData(data)
   }
 </script>
 
@@ -84,7 +93,7 @@
         <p>Game Settings(WIP)</p>
         <div class="form-group">
           <label for="game-selection">Game Selection</label>
-          <select class="form-control" id="game-selection" bind:value={current_game}>
+          <select class="form-control" id="game-selection" bind:value={current_game} on:change={clearGameData}>
             {#each game_names as g}
               <option>{g}</option>
             {/each}
@@ -104,7 +113,7 @@
 
         <div class="form-group">
           <label for="priority">Priority</label>
-          <select class="form-control" bind_value={current_priority}>
+          <select class="form-control" bind:value={current_priority}>
             <option>Major</option>
             <option>Minor</option>
             <option>Junior</option>
