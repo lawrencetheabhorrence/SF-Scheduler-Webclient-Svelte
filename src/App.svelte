@@ -21,7 +21,7 @@
   const addGame = () => {
     const replacement = 
       {name: current_game_name,
-        n_timeslots_per_round: current_timeslots_per_round,
+        n_timeslots_round: current_timeslots_per_round,
         priority: current_priority,
         n_categories: current_categories}
     if (current_game == 'New Game') {
@@ -50,7 +50,7 @@
       games: $games
     }
     console.log(data)
-    sendData(data)
+    sendData    (data)
   }
 </script>
 
