@@ -60,7 +60,7 @@
   <div>
     <div class="row me-0 ">
       <div class="intro col-sm-12 col-md-4 pb-3">
-         <p class="mb-0 px-3 py-5 ">The SF Scheduler is an SIP Project created by Julyanna Huang, Jairo Jaropojop 
+         <p class="mb-0 px-3 py-5 ">The SF Scheduler is an STR Project created by Julyanna Huang, Jairo Jaropojop 
           and Adrian Mayores with the goal of creating an algorithm that would streamline the process 
           of Sportsfest Schedule making. 
           <br><br>
