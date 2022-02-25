@@ -7,9 +7,4 @@ export const sf = writable({
   start_date: "2021-09-20"
 })
 
-export const games = writable([{
-  name: 'Test',
-  n_timeslots_round: 1,
-  priority: 'Major',
-  n_categories: 3
-}])
+export const games = writable([])

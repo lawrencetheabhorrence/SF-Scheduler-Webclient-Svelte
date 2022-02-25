@@ -12,7 +12,7 @@
   let games_var;
   let game_names;
   games.subscribe(g => {games_var = g; game_names = games_var.map(a => a.name);})
-  let current_game = "Test"
+  let current_game = "New Game"
   let current_game_name;
   let current_timeslots_per_round;
   let current_priority;
@@ -207,19 +207,19 @@
       
 
       <div class="forms col-sm-12 col-md-4 pb-3">
-        <p>Game Settings(WIP)</p>
+        <p>Game Settings</p>
         <div class="form-group">
-          <label for="game-selection">Game Selection</label>
+          <label for="game-selection">Edit Game/New Game</label>
           <select class="form-control" id="game-selection" bind:value={current_game} on:change={clearGameData}>
+            <option>New Game</option>
             {#each game_names as g}
               <option>{g}</option>
             {/each}
-            <option>New Game</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="game-name">Name</label>
+          <label for="game-name">Name of Game for (for new/editing games)</label>
           <input type="text" class="form-control" id="game-name" bind:value={current_game_name}/>
         </div>
 
