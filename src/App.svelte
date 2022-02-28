@@ -219,7 +219,7 @@
 
         <div class="form-group">
           <label for="n_timeslots_per_day">Number of Timeslots Per Day</label>
-          <input type="number" class="form-control" id="n_timeslots_per_day" placeholder="1" bind:value={$sf.n_timeslots_per_day}/>
+          <input type="number" class="form-control" id="n_timeslots_per_day" placeholder="1" bind:value={$sf.n_timeslots_day}/>
         </div>
         <div class="form-group">
           <label for="timeslot_length">Length of Timeslot in Sportsfest</label>
