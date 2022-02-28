@@ -117,6 +117,11 @@
                   Game Settings will be straight forward, fill it out appropriately and we will move on to the next area.
                   
                   Go ahead and leave this tutorial and do that, or press next in this modal for the next part of the tutorial.
+
+                  <br>
+
+                  Note: You know how Pisay timetables our subjects? A timeslot is exactly 1 box of that. You can set how much time
+                  said timeslot takes up.
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -139,12 +144,10 @@
                   Next lets look at Game Settings.(Pictured below)
                   <img src="Images/SavGame.png" alt="Saving Game">
                   <br>
-                  To tell the algorithm what games the sportsfest has, you need to input them. Click 'Game Selection'and select 'New Game'.
-                  <img src="Images/GameSel.png" alt="Game Selection">
-                  <img src="Images/SelNew.png" alt="Selecting New Game">
+                  To tell the algorithm what games the sportsfest has, you need to input them.
                   <br>
                   
-                  Then fill out the information of the game. Please make sure all the inputs fields are filled. Once done, Click the 'Add Game' button. 
+                  Fill out the information of the game. Please make sure all the inputs fields are filled. Once done, Click the 'Add Game' button. 
 
                 </div>
                 <div class="modal-footer">
@@ -165,13 +168,14 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  Once you've inputted a game via the 'Add Game' button. It will now show on the 'Game Selection'.
+                  Once you've inputted a game via the 'Add Game' button. It will now show on the 'Select Game'.
                   <img src="Images/Example.png" alt="Example">
-                  <img src="Images/Saved.png" alt="Saving done right">
+               
                   <br>
-                  Be careful, make sure your game selection is put on 'New Game'. If its put on anything else, it will overwrite the data.
-                  Speaking of which, if you which to modify any game, selecting it from the selection and overwriting the data is how you do it.
-                  <img src="Images/Mistake.png" alt="Showing a mistake in saving game">
+                  If you want to edit or DELETE a specific game's data. Just have it selected on 'Select Game'.
+                  The games data will be shown on the input boxes below for you to view and change.
+                  Remember New Game to add New Games and 'Select' a game to be deleted or edited.
+                  
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -194,10 +198,11 @@
                   Keep adding more games via selecting 'New Game', filling up the fields and then saving it until you are finished
                   Then please input your email here.
                   <img src="Images/GiveEmail.png" alt="Where to put email.">
+                  <br>
                   This is because the algorithm takes a bit of time. We don't want you to sit around waiting for it to finish so we'll give 
                   the final product to you via email when the algoritm has done it.
                   <br><br>
-                  That's all there is to the Schdeuler. Please enjoy the experience.
+                  That's all there is to the Scheduler. Please enjoy the experience.
 
                 </div>
                 <div class="modal-footer">
@@ -222,7 +227,7 @@
           <input type="number" class="form-control" id="n_timeslots_per_day" placeholder="1" bind:value={$sf.n_timeslots_day}/>
         </div>
         <div class="form-group">
-          <label for="timeslot_length">Length of Timeslot in Sportsfest</label>
+          <label for="timeslot_length">Length of Timeslot in Sportsfest (minutes)</label>
           <input type="number" class="form-control" id="timeslot_length" placeholder="1" bind:value={$sf.timeslot_length}/>
         </div>
         <div class="form-group">
@@ -236,7 +241,7 @@
       <div class="forms col-sm-12 col-md-4 pb-3">
         <p>Game Settings</p>
         <div class="form-group">
-          <label for="game-selection">Edit Game/New Game</label>
+          <label for="game-selection">Select Game</label>
           <select class="form-control" id="game-selection" bind:value={current_game} on:change={changeGameData}>
             <option>New Game</option>
             {#each game_names as g}
@@ -285,7 +290,27 @@
         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
       </div>
       <br>
-      <button class="btn custom-color" on:click={submitData}>Submit data</button>
+      <button type="button" class="btn custom-color" on:click={submitData} data-bs-toggle="modal" data-bs-target="#warningModal">Submit Data</button>
+      <!-- Modal -->
+      <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Tutorial</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Data has been sent to the Algorithm. Please check email about 15 mins later.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </form>  
   </div>
   
