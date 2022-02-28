@@ -44,6 +44,7 @@
       current_game = 'New Game'
     }
     console.log($games)
+    clearGameData()
   }
 
   const clearGameData = () => {
