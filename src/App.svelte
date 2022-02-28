@@ -12,7 +12,7 @@
   let games_var;
   let game_names;
   games.subscribe(g => {games_var = g; game_names = games_var.map(a => a.name);})
-  let current_game = "New Game"
+  let current_game = "New Game";
   let current_game_name;
   let current_timeslots_per_round;
   let current_priority;
@@ -21,23 +21,49 @@
 
   const addGame = () => {
     const replacement = 
-      {name: current_game_name,
+      {
+        name: current_game_name,
         n_timeslots_round: current_timeslots_per_round,
         priority: current_priority,
-        n_categories: current_categories}
+        n_categories: current_categories
+      }
     if (current_game == 'New Game') {
       $games = $games.concat(replacement)
     } else {
       $games = $games.map(g => g.name == current_game ? replacement : g)
     }
+    //console.log($games)
+    //console.log(current_priority)
+    current_game = "New Game"
+    clearGameData()
+  }
+
+  const deleteGame = () => {
+    if (current_game != 'New Game') {
+      $games = $games.filter(g => g.name != current_game)
+      current_game = 'New Game'
+    }
     console.log($games)
-    console.log(current_priority)
   }
 
   const clearGameData = () => {
     current_game_name = ""
     current_timeslots_per_round = 1
     current_categories = 1
+  }
+
+  const changeGameData = () => {
+    if (current_game == 'New Game') { clearGameData() }
+    else {
+      console.log(current_game)
+      console.log(games_var)
+      console.log(games_var.find(g => current_game === g.name))
+      const current_game_data = games_var.find(g => current_game === g.name)
+      current_game_name = current_game_data.name
+      current_timeslots_per_round = current_game_data.n_timeslots_round
+      current_priority = current_game_data.priority
+      current_categories = current_game_data.n_categories
+    }
   }
 
   const submitData = (e) => {
@@ -51,8 +77,9 @@
       games: $games
     }
     console.log(data)
-    sendData    (data)
+    sendData(data)
   }
+
 </script>
 
 
@@ -73,7 +100,7 @@
               Tutorial
             </button>
           </div>
-
+          
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -210,7 +237,7 @@
         <p>Game Settings</p>
         <div class="form-group">
           <label for="game-selection">Edit Game/New Game</label>
-          <select class="form-control" id="game-selection" bind:value={current_game} on:change={clearGameData}>
+          <select class="form-control" id="game-selection" bind:value={current_game} on:change={changeGameData}>
             <option>New Game</option>
             {#each game_names as g}
               <option>{g}</option>
@@ -243,7 +270,8 @@
         </div>
       
       <br>
-      <button class="btn custom-color" on:click={addGame}>Add game</button>
+      <button class="btn custom-color" on:click={addGame}>Add/Edit game</button>
+      <button class="btn custom-color" on:click={deleteGame}>Delete game</button>
     </div>
   </div>
   <div class="results ">
