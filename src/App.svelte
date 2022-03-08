@@ -9,9 +9,8 @@
 <script>
   import {sf, games} from "./store.js";
   import {sendData} from './services/scheduler.js';
-  let games_var;
   let game_names;
-  games.subscribe(g => {games_var = g; game_names = games_var.map(a => a.name);})
+  games.subscribe(g => {game_names = $games.map(a => a.name);})
   let current_game = "New Game";
   let current_game_name;
   let current_timeslots_per_round;
@@ -74,6 +73,7 @@
       n_timeslots_day: $sf.n_timeslots_day,
       timeslot_length: $sf.timeslot_length,
       start_date: $sf.start_date,
+      teams: $sf.teams,
       email: email,
       games: $games
     }
@@ -234,6 +234,10 @@
         <div class="form-group">
           <label for="start_date">Start Date</label>
           <input type="date" class="form-control" id="start_date" bind:value={$sf.start_date}/>
+        </div>
+        <div class="form-group">
+          <label for="teams">No. of Teams</label>
+          <input type="number" class="form-control" id="n_teams" placeholder="3" bind:value={$sf.teams}/>
         </div>
       </div>
      
